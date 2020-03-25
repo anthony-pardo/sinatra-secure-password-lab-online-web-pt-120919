@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
     if params[:ammount] > @user.balance 
       erb :failure 
     else 
-      @user.balance -= params[:amount]
+      @user.balance = @user.balance - params[:amount]
       @user.save
       erb :account
     end
@@ -53,7 +53,7 @@ class ApplicationController < Sinatra::Base
   
   post '/deposit' do 
     @user = User.find(session[:user_id])
-    @user.balance += params[:amount]
+    @user.balance = @user.balance - params[:amount]
     @user.save
     erb :account
   end

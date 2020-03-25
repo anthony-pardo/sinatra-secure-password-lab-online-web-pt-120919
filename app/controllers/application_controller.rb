@@ -35,6 +35,16 @@ class ApplicationController < Sinatra::Base
       erb :withdraw 
     end
   end
+  
+  post '/withdraw' do 
+    @user = User.find(session[:user_id])
+    if params[:ammount] > @user.balance 
+      erb :failure 
+    else 
+      @user.balance -= params[:amount]
+      erb :account
+    end
+  end
 
   get '/account' do
     @user = User.find(session[:user_id])

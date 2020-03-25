@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   after_initialize :init
 
   def init
-    self.number  ||= 0.0           #will set the default value only if it's nil
-    self.address ||= build_address #let's you set a default association
+    self.balance  ||= 0.0
   end
 end

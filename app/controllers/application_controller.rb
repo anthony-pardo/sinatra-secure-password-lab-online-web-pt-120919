@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
     if params[:ammount] > @user.balance 
       erb :failure 
     else 
-      @user.balance = @user.balance - params[:amount]
+      @user.balance = @user.balance - params[:amount].
       @user.save
       erb :account
     end

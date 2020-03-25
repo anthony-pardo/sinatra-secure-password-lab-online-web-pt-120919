@@ -45,6 +45,16 @@ class ApplicationController < Sinatra::Base
       erb :account
     end
   end
+  
+  get '/deposit' do 
+    erb :deposit
+  end
+  
+  post '/deposit' do 
+    @user = User.find(session[:user_id])
+    @user.balance -= params[:amount]
+    erb :account
+  end
 
   get '/account' do
     @user = User.find(session[:user_id])
